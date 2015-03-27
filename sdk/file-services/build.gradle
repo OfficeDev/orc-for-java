@@ -1,0 +1,7 @@
+apply plugin: 'java'
+
+dependencies {
+    compile project(':odata-engine-core')
+}
+
+apply from :'../java-libraries.gradle'
