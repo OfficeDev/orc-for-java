@@ -21,8 +21,7 @@
 # Android Studio
 .idea/
 .gradle/
-/*/local.properties
-/*/*/local.properties
+local.properties
 /*/out
 /*/*/build
 /*/*/production
