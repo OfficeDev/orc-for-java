@@ -71,14 +71,14 @@ bintray {
     pkg {
         repo = 'Maven'
         userOrg = 'msopentech'
-        name = 'Office-365-SDK-for-Android'
+        name = 'orc-for-java'
         publications = ['mavenJava'] // see publications closure
-        desc = 'Office 365 Android SDK for Android'
-        websiteUrl = 'https://github.com/OfficeDev/Office-365-SDK-for-Android'
-        issueTrackerUrl = 'https://github.com/OfficeDev/Office-365-SDK-for-Android/issues'
-        vcsUrl = 'https://github.com/OfficeDev/Office-365-SDK-for-Android.git'
+        desc = 'orc-for-java'
+        websiteUrl = 'https://github.com/MSOpenTech/orc-for-java'
+        issueTrackerUrl = 'https://github.com/MSOpenTech/orc-for-java/issues'
+        vcsUrl = 'https://github.com/MSOpenTech/orc-for-java.git'
         licenses = ['Apache-2.0']
-        labels = ['office-365', 'android', 'exchange', 'sharepoint', 'files']
+        labels = ['office-365', 'android', 'exchange', 'sharepoint', 'files', 'onedrive', 'graph']
         attributes = ['plat': ['android', 'java']]
         publicDownloadNumbers = true
 
@@ -86,7 +86,7 @@ bintray {
 
         version {
             name = ver //Optional logical version name
-            desc = 'Office 365 Android SDK for Android'
+            desc = 'ORC for Java'
             vcsTag = ver
         }
     }
