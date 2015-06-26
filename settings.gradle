@@ -1,5 +1,0 @@
-include ':orc-engine-jvm'
-//       ':orc-engine-core',
-//       ':live-sdk'
-//project(':orc-engine-core').projectDir = new File('core/orc-engine-core')
-//project(':live-sdk').projectDir = new File('core/live-sdk')
