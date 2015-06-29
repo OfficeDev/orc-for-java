@@ -9,13 +9,8 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.SettableFuture;
-import com.microsoft.services.orc.http.Credentials;
-import com.microsoft.services.orc.http.HttpTransport;
-import com.microsoft.services.orc.http.OrcResponse;
-import com.microsoft.services.orc.http.Request;
-import com.microsoft.services.orc.http.Response;
-import com.microsoft.services.orc.log.LogLevel;
-import com.microsoft.services.orc.log.Logger;
+import com.microsoft.services.orc.http.*;
+import com.microsoft.services.orc.log.*;
 
 import java.util.Map;
 
@@ -88,6 +83,7 @@ public abstract class BaseOrcContainer extends OrcExecutable {
 
             final ListenableFuture<Response> future = httpTransport.execute(request);
             logger.log("OData request executed", LogLevel.INFO);
+
 
             Futures.addCallback(future, new FutureCallback<Response>() {
 

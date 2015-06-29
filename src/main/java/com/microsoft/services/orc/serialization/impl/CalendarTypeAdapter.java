@@ -6,7 +6,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
 
 import java.lang.reflect.Type;
 import java.text.ParseException;
@@ -15,7 +14,7 @@ import java.util.Calendar;
 /**
  * The type Calendar type adapter.
  */
-public class CalendarTypeAdapter implements JsonSerializer<Calendar>, JsonDeserializer<Calendar> {
+public class CalendarTypeAdapter implements com.google.gson.JsonSerializer<Calendar>, JsonDeserializer<Calendar> {
 
     @Override
     public Calendar deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
