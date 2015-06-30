@@ -11,7 +11,6 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:0.6"
         classpath 'com.android.tools.build:gradle:1.0.0'
     }
 }
@@ -53,9 +52,9 @@ uploadArchives {
         }
         repository (url: project.mavenRepoUrl) {
             authentication(
-                    //TODO: Replace with values from ~/settings.gradle
-                    userName: 'bintray',
-                    password: 'bintray password'
+                    // put these values in local file ~/.gradle/properties.gradle
+                    userName: project.bintrayUsername,
+                    password: project.bintrayApikey
             )
         }
     }
