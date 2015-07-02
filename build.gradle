@@ -20,10 +20,6 @@ allprojects {
     repositories {
         jcenter()
     }
-
-    apply plugin: 'idea'
-    group = 'com.microsoft.services.orc'
-    version = '1.0.0'
 }
 
 if (JavaVersion.current().isJava8Compatible()) {
