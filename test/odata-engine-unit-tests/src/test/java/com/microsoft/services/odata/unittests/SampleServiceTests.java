@@ -9,7 +9,7 @@ import com.microsoft.sampleservice.fetchers.SampleContainerClient;
 import com.microsoft.sampleservice.SampleEntity;
 import com.microsoft.services.orc.core.Helpers;
 import com.microsoft.services.orc.log.LogLevel;
-import com.microsoft.services.orc.resolvers.JvmDependencyResolver;
+import com.microsoft.services.orc.resolvers.JavaDependencyResolver;
 import com.microsoft.services.orc.serialization.impl.GsonSerializer;
 
 import org.junit.Test;
@@ -30,12 +30,12 @@ public class SampleServiceTests extends WireMockTestBase {
 
     private String url = "http://localhost:8080";
 
-    private JvmDependencyResolver resolver;
+    private JavaDependencyResolver resolver;
     private SampleContainerClient client;
 
     public SampleServiceTests() {
 
-        resolver = new JvmDependencyResolver("faketoken");
+        resolver = new JavaDependencyResolver("faketoken");
         resolver.getLogger().setLogLevel(LogLevel.VERBOSE);
         resolver.getLogger().setEnabled(true);
         client = new SampleContainerClient(url, resolver);
