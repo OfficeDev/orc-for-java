@@ -1,0 +1,49 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.google.guava:guava:18.0'
+    compile 'com.google.code.gson:gson:2.3'
+    compile 'org.apache.httpcomponents:httpclient:4.3.5'
+    compile 'commons-httpclient:commons-httpclient:3.1'
+}
+
+uploadArchives {
+    configuration = configurations.archives
+
+    repositories.mavenDeployer {
+        pom {
+            setGroupId project.mavenGroupId
+            setArtifactId project.mavenArtifactId
+            setVersion project.mavenVersion
+        }
+        repository (url: project.mavenRepoUrl) {
+            authentication(
+                    // put these values in local file ~/.gradle/properties.gradle
+                    userName: project.bintrayUsername,
+                    password: project.bintrayApikey
+            )
+        }
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}

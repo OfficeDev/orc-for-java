@@ -5,6 +5,7 @@ import com.microsoft.services.orc.http.NetworkRunnable;
 import com.microsoft.services.orc.http.Request;
 import com.microsoft.services.orc.http.Response;
 
+import org.apache.commons.httpclient.util.URIUtil;
 import org.apache.http.*;
 import org.apache.http.entity.*;
 import org.apache.http.impl.client.*;
@@ -12,6 +13,7 @@ import org.apache.http.message.*;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +36,10 @@ public class JvmNetworkRunnable extends NetworkRunnable {
 
             client = HttpClients.createDefault();
 
-            BasicHttpEntityEnclosingRequest realRequest = new BasicHttpEntityEnclosingRequest(mRequest.getVerb().toString(), mRequest.getUrl().toString());
+            String rawUrl = "https://www.google.com/api/v1.0/users%2Ftest@example.onmicrosoft.com/Events/?$filter=Start%20gt%202015-01-01T00:00:00.000+02:00&$select=ID,Body";
+            String scapedUrl = URIUtil.encodeQuery(rawUrl);
+
+            BasicHttpEntityEnclosingRequest realRequest = new BasicHttpEntityEnclosingRequest(mRequest.getVerb().toString(), scapedUrl);
             EntityEnclosingRequestWrapper wrapper = new EntityEnclosingRequestWrapper(realRequest);
 
             Map<String, String> headers = mRequest.getHeaders();

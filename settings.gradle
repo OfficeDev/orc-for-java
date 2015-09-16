@@ -1,4 +1,7 @@
 include ':odata-engine-unit-tests',
-        ':sample-service'
+        ':sample-service',
+        ':orc-java'
+
+project(':orc-java').projectDir = new File('src/orc-java')
 project(':sample-service').projectDir = new File('test/sample-service')
 project(':odata-engine-unit-tests').projectDir = new File('test/odata-engine-unit-tests')
