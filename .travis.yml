@@ -1,3 +1,3 @@
 language: java
 
-script: ./gradlew clean build :odata-engine-unit-tests:test --stacktrace
+script: ./gradlew clean build :orc-java-unit-tests:test --stacktrace
