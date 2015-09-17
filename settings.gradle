@@ -1,7 +1,7 @@
-include ':odata-engine-unit-tests',
+include ':orc-java-unit-tests',
         ':sample-service',
         ':orc-java'
 
 project(':orc-java').projectDir = new File('src/orc-java')
 project(':sample-service').projectDir = new File('test/sample-service')
-project(':odata-engine-unit-tests').projectDir = new File('test/odata-engine-unit-tests')
+project(':orc-java-unit-tests').projectDir = new File('test/orc-java-unit-tests')
