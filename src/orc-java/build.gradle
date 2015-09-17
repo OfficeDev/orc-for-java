@@ -12,6 +12,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3'
     compile 'org.apache.httpcomponents:httpclient:4.3.5'
     compile 'commons-httpclient:commons-httpclient:3.1'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
 }
 
 uploadArchives {

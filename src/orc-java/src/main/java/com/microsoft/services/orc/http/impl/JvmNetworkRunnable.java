@@ -4,16 +4,21 @@ import com.google.common.util.concurrent.SettableFuture;
 import com.microsoft.services.orc.http.NetworkRunnable;
 import com.microsoft.services.orc.http.Request;
 import com.microsoft.services.orc.http.Response;
+import com.squareup.okhttp.HttpUrl;
 
-import org.apache.commons.httpclient.util.URIUtil;
-import org.apache.http.*;
-import org.apache.http.entity.*;
-import org.apache.http.impl.client.*;
-import org.apache.http.message.*;
+import org.apache.http.Header;
+import org.apache.http.HeaderElement;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.entity.InputStreamEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.EntityEnclosingRequestWrapper;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicHttpEntityEnclosingRequest;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,9 +40,7 @@ public class JvmNetworkRunnable extends NetworkRunnable {
         try {
 
             client = HttpClients.createDefault();
-
-            String rawUrl = "https://www.google.com/api/v1.0/users%2Ftest@example.onmicrosoft.com/Events/?$filter=Start%20gt%202015-01-01T00:00:00.000+02:00&$select=ID,Body";
-            String scapedUrl = URIUtil.encodeQuery(rawUrl);
+            String scapedUrl = HttpUrl.parse(mRequest.getUrl().toString()).toString();
 
             BasicHttpEntityEnclosingRequest realRequest = new BasicHttpEntityEnclosingRequest(mRequest.getVerb().toString(), scapedUrl);
             EntityEnclosingRequestWrapper wrapper = new EntityEnclosingRequestWrapper(realRequest);
