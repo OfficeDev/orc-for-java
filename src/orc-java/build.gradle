@@ -19,7 +19,7 @@ dependencies {
 
 uploadArchives {
     configuration = configurations.archives
-qq
+
     repositories.mavenDeployer {
         pom {
             setGroupId project.mavenGroupId
