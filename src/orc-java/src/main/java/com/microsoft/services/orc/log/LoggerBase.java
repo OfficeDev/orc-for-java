@@ -1,5 +1,6 @@
 package com.microsoft.services.orc.log;
 
+
 /**
  * The type Logger impl.
  */
@@ -39,7 +40,6 @@ public abstract class LoggerBase implements Logger {
     }
 
     public abstract void print(String content, LogLevel logLevel);
-
 
 
     /**

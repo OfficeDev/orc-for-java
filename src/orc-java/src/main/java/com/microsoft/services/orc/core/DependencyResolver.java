@@ -48,6 +48,7 @@ public interface DependencyResolver {
 
     /**
      * Gets the user agent for a specific platform
+     *
      * @param productName the product name
      * @return the user agent
      */

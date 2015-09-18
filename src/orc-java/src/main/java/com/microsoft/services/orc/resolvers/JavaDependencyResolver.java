@@ -3,17 +3,15 @@ package com.microsoft.services.orc.resolvers;
 import com.microsoft.services.orc.core.*;
 import com.microsoft.services.orc.http.*;
 import com.microsoft.services.orc.http.impl.*;
-import com.microsoft.services.orc.log.impl.LoggerImpl;
+import com.microsoft.services.orc.log.Logger;
 import com.microsoft.services.orc.serialization.JsonSerializer;
 import com.microsoft.services.orc.serialization.impl.GsonSerializer;
 
 public class JavaDependencyResolver implements DependencyResolver {
 
-    private LoggerImpl logger;
     private String token;
 
     public JavaDependencyResolver(String token) {
-        this.logger = new LoggerImpl();
         this.token = token;
     }
 
@@ -23,8 +21,8 @@ public class JavaDependencyResolver implements DependencyResolver {
     }
 
     @Override
-    public LoggerImpl getLogger() {
-        return this.logger;
+    public Logger getLogger() {
+        return null;
     }
 
     @Override
