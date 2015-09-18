@@ -8,14 +8,19 @@ import com.squareup.okhttp.HttpUrl;
 
 import org.apache.http.Header;
 import org.apache.http.HeaderElement;
+import org.apache.http.HeaderElementIterator;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.conn.ConnectionKeepAliveStrategy;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.EntityEnclosingRequestWrapper;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicHeaderElementIterator;
 import org.apache.http.message.BasicHttpEntityEnclosingRequest;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.protocol.HttpContext;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -36,9 +41,34 @@ public class JvmNetworkRunnable extends NetworkRunnable {
 
     @Override
     public void run() {
+
+        //based on 2.6 http://hc.apache.org/httpcomponents-client-ga/tutorial/html/connmgmt.html
+        ConnectionKeepAliveStrategy keepAliveStrategy = new ConnectionKeepAliveStrategy() {
+
+            public long getKeepAliveDuration(HttpResponse response, HttpContext context) {
+
+                HeaderElementIterator it = new BasicHeaderElementIterator(
+                        response.headerIterator(HTTP.CONN_KEEP_ALIVE));
+                while (it.hasNext()) {
+                    HeaderElement he = it.nextElement();
+                    String param = he.getName();
+                    String value = he.getValue();
+                    if (value != null && param.equalsIgnoreCase("timeout")) {
+                        try {
+                            return Long.parseLong(value) * 1000;
+                        } catch (NumberFormatException ignore) {
+                        }
+                    }
+                }
+                return 30 * 1000;
+            }
+        };
+
+
         CloseableHttpClient client = null;
         try {
 
+            HttpClients.custom().setKeepAliveStrategy(keepAliveStrategy);
             client = HttpClients.createDefault();
             String scapedUrl = HttpUrl.parse(mRequest.getUrl().toString()).toString();
 
