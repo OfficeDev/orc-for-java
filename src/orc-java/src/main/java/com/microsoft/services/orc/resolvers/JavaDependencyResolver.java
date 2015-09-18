@@ -3,7 +3,6 @@ package com.microsoft.services.orc.resolvers;
 import com.microsoft.services.orc.core.*;
 import com.microsoft.services.orc.http.*;
 import com.microsoft.services.orc.http.impl.*;
-import com.microsoft.services.orc.log.Logger;
 import com.microsoft.services.orc.serialization.JsonSerializer;
 import com.microsoft.services.orc.serialization.impl.GsonSerializer;
 
@@ -18,11 +17,6 @@ public class JavaDependencyResolver implements DependencyResolver {
     @Override
     public HttpTransport getHttpTransport() {
         return new JvmHttpTransport();
-    }
-
-    @Override
-    public Logger getLogger() {
-        return null;
     }
 
     @Override
